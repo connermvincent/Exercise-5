@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Color Picker</title>
+
+<link href="myCSS.css" type="text/css" rel="stylesheet" />
+
+<script>
+    window.addEventListener("load", init);
+    
+    function init(){
+        var colorButton = document.getElementById("showColor");
+        var clearButton = document.getElementById("clearAll");
+
+        colorButton.addEventListener("click", showColor);
+        clearButton.addEventListener("click", clearAll);
+    }
+    
+    
+    
+    
+    function showColor(){
+        var red = document.getElementById("red").value;
+        var green = document.getElementById("green").value;
+        var blue = document.getElementById("blue").value;
+        
+        var colorBox = document.getElementById("colorBox");
+        
+        if(red > 255 || red < 0 || green > 255 || green < 0 || blue > 255 || blue < 0)
+            {
+                alert("Invalid RGB values.");
+                document.getElementById("red").value = 0;
+                document.getElementById("green").value = 0;
+                document.getElementById("blue").value = 0;
+                colorBox.setAttribute("style", "background-color: rgb(0, 0, 0)");
+            }
+        else
+            {
+                colorBox.setAttribute("style", "background-color: rgb("+red+", "+blue+", "+green+")")
+            }
+    }
+    
+    function clearAll(){
+        document.getElementById("red").value = 0;
+        document.getElementById("green").value = 0;
+        document.getElementById("blue").value = 0;
+        
+        colorBox.setAttribute("style", "background-color: rgb(0, 0, 0)");
+    }
+    
+    
+    
+</script>
+</head>
+
+<body>
+    <div id="main">
+    <h2>CSS Color Displayer</h2>
+    <br>
+    Select a number from 0 to 255 for each color value:
+    <br><br>
+    <div class="colorInputBox">
+        Red:<br>
+        <input type="number" id="red" min="0" max="255" size="4" value="0">
+    </div>
+    <div class="colorInputBox">
+        Green:<br>
+        <input type="number" id="green" min="0" max="255" size="4" value="0">
+    </div>
+    <div class="colorInputBox">
+        Blue:<br>
+        <input type="number" id="blue" min="0" max="255" size="4" value="0">
+    </div>
+    <br><br>
+    <input type="button" id="showColor" value="Show the Color">
+    <br><br>
+    <input type="button" id="clearAll" value="Clear all">
+    
+    <div id="colorBox"></div>
+        
+    </div>
+</body>
+</html>
